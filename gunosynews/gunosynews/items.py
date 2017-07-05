@@ -9,4 +9,7 @@ import scrapy
 
 
 class GunosynewsItem(scrapy.Item):
-    title = scrapy.Field()
+    url    = scrapy.Field()
+    title  = scrapy.Field()
+    text   = scrapy.Field()
+    image  = scrapy.Field()
