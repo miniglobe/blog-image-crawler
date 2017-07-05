@@ -22,15 +22,12 @@ class GunosySpider(scrapy.Spider):
         next_page = response.css("div.pager-link-option > a::attr('href')")
         if next_page:
             url = response.urljoin(next_page[0].extract())
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-            print(url)
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
             yield scrapy.Request(url, callback=self.parse)
     
     def parse_dir_contents(self, response):
         items = GunosynewsItem()
-        items["title"] = response.xpath('//h1[@class="article_header_title"]/h1/text()').extract_first()
-        items["text"]  = response.xpath('//div[@class="article"]/p/text()').extract()
-        items["image"] = response.xpath('//div[@class="article__image"]/img/src/@href').extract_first()
+        items["title"] = response.css('.article_header_title::text').extract_first()
+        items["image"]  = response.css('.article__image > img::attr(src)').extract_first()
+        items["text"] = response.css('.article > p::text').extract()
         return items
 
