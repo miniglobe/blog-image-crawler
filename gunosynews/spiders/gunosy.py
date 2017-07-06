@@ -29,5 +29,6 @@ class GunosySpider(scrapy.Spider):
         items["title"] = response.css('.article_header_title::text').extract_first()
         items["image"]  = response.css('.article__image > img::attr(src)').extract_first()
         items["text"] = response.css('.article > p::text').extract()
+        items['url'] = response.url
         return items
 
