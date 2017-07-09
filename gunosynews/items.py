@@ -13,3 +13,4 @@ class GunosynewsItem(scrapy.Item):
     title  = scrapy.Field()
     text   = scrapy.Field()
     image  = scrapy.Field()
+    image_store_url  = scrapy.Field()

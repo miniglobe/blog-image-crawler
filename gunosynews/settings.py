@@ -14,6 +14,9 @@ BOT_NAME = 'gunosynews'
 SPIDER_MODULES = ['gunosynews.spiders']
 NEWSPIDER_MODULE = 'gunosynews.spiders'
 
+ITEM_PIPELINES = {
+    'gunosynews.pipelines.GunosynewsPipeline': 800,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'gunosynews (+http://www.yourdomain.com)'
