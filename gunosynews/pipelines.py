@@ -7,12 +7,16 @@
 
 import sys
 sys.path.append('./model')
-import repository
+from repository import Repository
 from datetime import datetime
 from gcloud import datastore
 
 
 class GunosynewsPipeline(object):
+
+    def __init__(self):
+        self.repository = Repository()
+
     def process_item(self, item, spider):
-        repository.register(item)
+        self.repository(item)
         return item
